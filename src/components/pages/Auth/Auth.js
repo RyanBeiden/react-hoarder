@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleTwoTone from '@material-ui/icons/AccountCircleTwoTone';
@@ -54,8 +55,8 @@ class Auth extends React.Component {
               open={Boolean(anchorEl)}
               onClose={this.handleClose}
             >
-              <MenuItem onClick={this.handleClose} className="new-item">New</MenuItem>
-              <MenuItem onClick={this.handleClose} className="my-stuff">My Stuff</MenuItem>
+              <Link to="/new" className="menu-link"><MenuItem onClick={this.handleClose} className="new-item">New</MenuItem></Link>
+              <Link to="/stuff" className="menu-link"><MenuItem onClick={this.handleClose} className="my-stuff">My Stuff</MenuItem></Link>
               <MenuItem onClick={signOutUser} className="logout-button">Logout</MenuItem>
             </Menu>
           </div>

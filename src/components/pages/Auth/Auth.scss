@@ -10,6 +10,15 @@
   }
 }
 
+.menu-link {
+  color: $textColor !important;
+}
+
+.menu-link:hover {
+  color: $textColor !important;
+  text-decoration: none;
+}
+
 .my-stuff {
   padding-bottom: 10px !important;
 }

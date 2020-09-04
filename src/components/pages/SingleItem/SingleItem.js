@@ -5,7 +5,7 @@ import './SingleItem.scss';
 class SingleItem extends React.Component {
   render() {
     return (
-      <h1>Single Item</h1>
+      <h1>Item 12345</h1>
     );
   }
 }

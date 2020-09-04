@@ -1,0 +1,21 @@
+.Stuff {
+  display: grid;
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.mat-button {
+  outline: none !important;
+}
+
+.stuff-links {
+  color: #fff !important;
+
+  margin: 15px 0px !important;
+}
+
+.stuff-links:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
