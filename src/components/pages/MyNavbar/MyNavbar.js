@@ -19,7 +19,7 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const { auth } = this.props;
+    const { authed } = this.props;
     return (
       <div className="root">
         <AppBar position="static" className="AppBar">
@@ -27,8 +27,8 @@ class Navbar extends React.Component {
             <Typography variant="h6" className="title">
               Hoarder
             </Typography>
-            {auth
-              ? <Auth auth={auth}/>
+            {authed
+              ? <Auth authed={authed}/>
               : <Button className="sign-in-button" variant="contained" onClick={this.loginClickEvent}>Sign In</Button>
             }
           </Toolbar>

@@ -29,9 +29,9 @@ class Auth extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { auth } = this.props;
+    const { authed } = this.props;
 
-    if (auth) {
+    if (authed) {
       return (
       <div>
         <IconButton

@@ -22,15 +22,15 @@ import './App.scss';
 
 connection();
 
-const PublicRoute = ({ component: Component, auth, ...rest }) => {
-  const routeChecker = (props) => (auth === false
+const PublicRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === false
     ? (<Component {...props} />)
     : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
 
-const PrivateRoute = ({ component: Component, auth, ...rest }) => {
-  const routeChecker = (props) => (auth === true
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === true
     ? (<Component {...props} />)
     : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
   return <Route {...rest} render={(props) => routeChecker(props)} />;
@@ -38,15 +38,15 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
 
 class App extends React.Component {
   state = {
-    auth: false,
+    authed: false,
   }
 
   componentDidMount() {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ auth: true });
+        this.setState({ authed: true });
       } else {
-        this.setState({ auth: false });
+        this.setState({ authed: false });
       }
     });
   }
@@ -56,21 +56,21 @@ class App extends React.Component {
   }
 
   render() {
-    const { auth } = this.state;
+    const { authed } = this.state;
 
     return (
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <MyNavbar auth={auth}/>
+            <MyNavbar authed={authed}/>
             <div className="route-container">
               <Switch>
-                <PrivateRoute path="/home" component={Home} auth={auth} />
-                <PrivateRoute path="/new" component={NewItem} auth={auth} />
-                <PrivateRoute path="/stuff" component={Stuff} auth={auth} />
-                <PrivateRoute path="/edit/:itemId" component={EditItem} auth={auth} />
-                <PrivateRoute path="/items/:itemId" component={SingleItem} auth={auth} />
-                <PublicRoute path="/auth" component={Auth} auth={auth} />
+                <PrivateRoute path="/home" component={Home} authed={authed} />
+                <PrivateRoute path="/new" component={NewItem} authed={authed} />
+                <PrivateRoute path="/stuff" component={Stuff} authed={authed} />
+                <PrivateRoute path="/edit/:itemId" component={EditItem} authed={authed} />
+                <PrivateRoute path="/items/:itemId" component={SingleItem} authed={authed} />
+                <PublicRoute path="/auth" component={Auth} authed={authed} />
                 <Redirect from="*" to="/home" />
               </Switch>
             </div>
