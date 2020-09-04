@@ -29,8 +29,10 @@ class Auth extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
+    const { auth } = this.props;
 
-    return (
+    if (auth) {
+      return (
       <div>
         <IconButton
           className="account-icon"
@@ -62,7 +64,9 @@ class Auth extends React.Component {
           <MenuItem onClick={this.signOutUser}>Logout</MenuItem>
         </Menu>
       </div>
-    );
+      );
+    }
+    return null;
   }
 }
 
