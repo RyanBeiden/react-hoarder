@@ -1,6 +1,4 @@
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
 
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleTwoTone from '@material-ui/icons/AccountCircleTwoTone';
@@ -22,17 +20,11 @@ class Auth extends React.Component {
     this.setState({ anchorEl: null });
   }
 
-  signOutUser = (e) => {
-    e.preventDefault();
-    firebase.auth().signOut();
-  }
-
   render() {
     const { anchorEl } = this.state;
-    const { authed } = this.props;
+    const { signOutUser } = this.props;
 
-    if (authed) {
-      return (
+    return (
       <div>
         <IconButton
           className="account-icon"
@@ -61,12 +53,10 @@ class Auth extends React.Component {
         >
           <MenuItem onClick={this.handleClose}>New</MenuItem>
           <MenuItem onClick={this.handleClose}>My Stuff</MenuItem>
-          <MenuItem onClick={this.signOutUser}>Logout</MenuItem>
+          <MenuItem onClick={signOutUser}>Logout</MenuItem>
         </Menu>
       </div>
-      );
-    }
-    return null;
+    );
   }
 }
 

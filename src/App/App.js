@@ -22,37 +22,69 @@ import './App.scss';
 
 connection();
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => {
-  const routeChecker = (props) => (authed === false
-    ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
-  return <Route {...rest} render={(props) => routeChecker(props)} />;
-};
+// const PublicRoute = ({ component: Component, authed, ...rest }) => {
+//   const routeChecker = (props) => (authed === false
+//     ? (<Component {...props} />)
+//     : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
+//   return <Route {...rest} render={(props) => routeChecker(props)} />;
+// };
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-  const routeChecker = (props) => (authed === true
-    ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
-  return <Route {...rest} render={(props) => routeChecker(props)} />;
-};
+// const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+//   const routeChecker = (props) => (authed === true
+//     ? (<Component {...props} />)
+//     : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
+//   return <Route {...rest} render={(props) => routeChecker(props)} />;
+// };
 
 class App extends React.Component {
   state = {
+    loading: true,
     authed: false,
   }
 
   componentDidMount() {
-    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ authed: true });
+        this.setState({ authed: true, loading: false });
       } else {
-        this.setState({ authed: false });
+        this.setState({ authed: false, loading: false });
       }
     });
   }
 
-  componentWillUnmount() {
-    this.removeListener();
+  routeChecker = () => {
+    const { authed } = this.state;
+
+    if (authed) {
+      return (
+        <Switch>
+          <Route path="/home">
+            <Home authed={authed} />
+          </Route>
+          <Route path="/new">
+            <NewItem authed={authed} />
+          </Route>
+          <Route path="/stuff">
+            <Stuff authed={authed} />
+          </Route>
+          <Route path="/edit/:itemId">
+            <EditItem authed={authed} />
+          </Route>
+          <Route path="/items/:itemId">
+            <SingleItem authed={authed} />
+          </Route>
+        </Switch>
+      );
+    } if (authed === false) {
+      return (
+        <Switch>
+          <Route path="/auth"><Auth authed={authed}/></Route>
+          <Redirect from="*" to="/new" />
+        </Switch>
+      );
+    }
+
+    return null;
   }
 
   render() {
@@ -63,17 +95,7 @@ class App extends React.Component {
         <BrowserRouter>
           <React.Fragment>
             <MyNavbar authed={authed}/>
-            <div className="route-container">
-              <Switch>
-                <PrivateRoute path="/home" component={Home} authed={authed} />
-                <PrivateRoute path="/new" component={NewItem} authed={authed} />
-                <PrivateRoute path="/stuff" component={Stuff} authed={authed} />
-                <PrivateRoute path="/edit/:itemId" component={EditItem} authed={authed} />
-                <PrivateRoute path="/items/:itemId" component={SingleItem} authed={authed} />
-                <PublicRoute path="/auth" component={Auth} authed={authed} />
-                <Redirect from="*" to="/home" />
-              </Switch>
-            </div>
+              {this.routeChecker()}
           </React.Fragment>
         </BrowserRouter>
       </div>
