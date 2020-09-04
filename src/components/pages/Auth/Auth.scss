@@ -1,3 +1,26 @@
+@import '../../../styles/variables';
+
 .account-icon {
   font-size: 1.6em !important;
+}
+
+.menu-container {
+  .MuiList-padding {
+    padding-bottom: 0 !important;
+  }
+}
+
+.my-stuff {
+  padding-bottom: 10px !important;
+}
+
+.logout-button {
+  background: #f44336 !important;
+  color: #fff !important;
+
+  padding-bottom: 10px !important;
+}
+
+.logout-button:hover {
+  background: #d32f2f !important;
 }
