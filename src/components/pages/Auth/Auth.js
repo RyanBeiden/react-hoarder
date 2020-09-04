@@ -55,7 +55,7 @@ class Auth extends React.Component {
               open={Boolean(anchorEl)}
               onClose={this.handleClose}
             >
-              <Link to="/new" className="menu-link"><MenuItem onClick={this.handleClose} className="new-item">New</MenuItem></Link>
+              <Link to="/stuff/new" className="menu-link"><MenuItem onClick={this.handleClose} className="new-item">New</MenuItem></Link>
               <Link to="/stuff" className="menu-link"><MenuItem onClick={this.handleClose} className="my-stuff">My Stuff</MenuItem></Link>
               <MenuItem onClick={signOutUser} className="logout-button">Logout</MenuItem>
             </Menu>

@@ -51,10 +51,10 @@ const RoutesContainer = ({ authed }) => {
   return (
     <div className="route-container">
       <Switch>
+        <PrivateRoute path="/stuff/new" component={NewItem} authed={authed} />
         <PrivateRoute path="/edit/:itemId" component={EditItem} authed={authed} />
         <PrivateRoute path="/stuff/:itemId" component={SingleItem} authed={authed} />
         <PrivateRoute path="/home" component={Home} authed={authed} />
-        <PrivateRoute path="/new" component={NewItem} authed={authed} />
         <PrivateRoute path="/stuff" component={Stuff} authed={authed} />
         <PublicRoute path="/auth" component={Auth} authed={authed} />
         <Redirect from="*" to="/home" />
