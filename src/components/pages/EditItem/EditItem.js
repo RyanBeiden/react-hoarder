@@ -5,7 +5,9 @@ import './EditItem.scss';
 class EditItem extends React.Component {
   render() {
     return (
-      <h1>Edit Item</h1>
+      <div className="EditItem">
+        <h1>Edit 12345</h1>
+      </div>
     );
   }
 }

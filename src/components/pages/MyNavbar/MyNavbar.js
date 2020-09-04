@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -36,7 +38,7 @@ class Navbar extends React.Component {
         <AppBar position="static" className="AppBar">
           <Toolbar>
             <Typography variant="h6" className="title">
-              Hoarder
+              <Link to="/home" className="logo-link">Hoarder</Link>
             </Typography>
             {authed
               ? <Auth signOutUser={this.signOutUser} authed={authed}/>
