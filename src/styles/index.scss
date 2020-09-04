@@ -4,5 +4,7 @@
 @import './variables';
 
 body {
-  background-color: $favColor;
+  background-color: $backgroundColor;
+  color: $textColor;
+  font-family: $primaryFont;
 }

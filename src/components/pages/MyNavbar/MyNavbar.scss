@@ -1,0 +1,34 @@
+@import '../../../styles/variables';
+
+.root {
+  flex-grow: 1;
+}
+
+.AppBar {
+  background: #095f8d !important;
+}
+
+.menuButton {
+  margin-right: 10px;
+  outline: none !important;
+}
+
+.account-icon {
+  outline: none !important;
+}
+
+.sign-in-button {
+  outline: none !important;
+  background: $backgroundColor !important;
+  font-family: $primaryFont !important;
+  color: $textColor !important;
+}
+
+.title {
+  flex-grow: 1;
+
+  font-size: 1.8em !important;
+  font-family: $primaryFont !important;
+
+  padding: 15px !important;
+}
