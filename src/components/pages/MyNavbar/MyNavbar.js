@@ -14,7 +14,7 @@ import './MyNavbar.scss';
 
 class Navbar extends React.Component {
   static propTypes = {
-    authed: PropTypes.bool.isRequired,
+    authed: PropTypes.bool,
   }
 
   loginClickEvent = (e) => {
@@ -31,13 +31,6 @@ class Navbar extends React.Component {
   render() {
     const { authed } = this.props;
 
-    const buildAuthData = () => {
-      if (authed) {
-        return <Auth signOutUser={this.signOutUser}/>;
-      }
-      return <Button className="sign-in-button" variant="contained" onClick={this.loginClickEvent}>Sign In</Button>;
-    };
-
     return (
       <div className="root">
         <AppBar position="static" className="AppBar">
@@ -45,7 +38,10 @@ class Navbar extends React.Component {
             <Typography variant="h6" className="title">
               Hoarder
             </Typography>
-            {buildAuthData()}
+            {authed
+              ? <Auth signOutUser={this.signOutUser} authed={authed}/>
+              : <Button className="sign-in-button" variant="contained" onClick={this.loginClickEvent}>Sign In</Button>
+            }
           </Toolbar>
         </AppBar>
       </div>

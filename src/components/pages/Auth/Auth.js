@@ -22,39 +22,44 @@ class Auth extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { signOutUser } = this.props;
+    const { signOutUser, authed } = this.props;
 
     return (
-      <div>
-        <IconButton
-          className="account-icon"
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={this.handleMenu}
-          color="inherit"
-        >
-          <AccountCircleTwoTone className="account-icon" />
-        </IconButton>
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClose}>New</MenuItem>
-          <MenuItem onClick={this.handleClose}>My Stuff</MenuItem>
-          <MenuItem onClick={signOutUser}>Logout</MenuItem>
-        </Menu>
+      <div className="Auth">
+        {authed
+          ? <div>
+            <IconButton
+              className="account-icon"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={this.handleMenu}
+              color="inherit"
+            >
+              <AccountCircleTwoTone className="account-icon" />
+            </IconButton>
+            <Menu
+              className="menu-container"
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={this.handleClose}
+            >
+              <MenuItem onClick={this.handleClose} className="new-item">New</MenuItem>
+              <MenuItem onClick={this.handleClose} className="my-stuff">My Stuff</MenuItem>
+              <MenuItem onClick={signOutUser} className="logout-button">Logout</MenuItem>
+            </Menu>
+          </div>
+          : ''}
       </div>
     );
   }
