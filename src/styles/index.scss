@@ -8,3 +8,18 @@ body {
   color: $textColor;
   font-family: $primaryFont;
 }
+
+.page-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  h3 {
+    text-align: center;
+    border: 4px solid $textColor;
+    border-radius: .2em;
+
+    margin-bottom: 30px;
+    padding: 10px 20px;
+  }
+}

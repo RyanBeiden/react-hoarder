@@ -1,8 +1,7 @@
-.Stuff {
-  display: grid;
-  justify-content: center;
+@import '../../../styles/variables';
 
-  margin-top: 50px;
+.Stuff {
+  margin: 30px;
 }
 
 .mat-button {
