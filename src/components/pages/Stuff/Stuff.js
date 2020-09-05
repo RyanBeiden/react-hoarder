@@ -1,17 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+
+import itemsData from '../../../helpers/data/itemsData';
+import authData from '../../../helpers/data/authData';
+import ItemCard from '../../shared/ItemCard/ItemCard';
 
 import './Stuff.scss';
 
 class Stuff extends React.Component {
+  state = {
+    items: [],
+  }
+
+  componentDidMount() {
+    this.getItems();
+  }
+
+  getItems = () => {
+    itemsData.getItemsByUid(authData.getUid())
+      .then((items) => this.setState({ items }))
+      .catch((err) => console.error('Getting items by UID did not work -> ', err));
+  }
+
   render() {
+    const { items } = this.state;
+
+    const getItemCards = items.map((item) => <ItemCard
+      key={item.id}
+      item={item}
+    />);
+
     return (
       <div className="Stuff">
-        <h1>Stuff</h1>
-        <Link to="/stuff/12345" className="stuff-links"><Button variant="contained" color="primary" className="mat-button">Single</Button></Link>
-        <Link to="/edit/12345" className="stuff-links"><Button variant="contained" color="secondary" className="mat-button">Edit</Button></Link>
+        <div className="page-title">
+          <h3>My Stuff</h3>
+        </div>
+        <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" p={1} m={1}>
+          {getItemCards}
+        </Box>
       </div>
     );
   }
