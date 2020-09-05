@@ -1,0 +1,14 @@
+@import '../../../styles/variables';
+
+.SingleItem__root {
+  max-width: 600px;
+}
+
+.SingleItem__media {
+  height: 400px;
+}
+
+.SingleItem__description {
+  font-size: 1.2em;
+  color: $textColor;
+}
