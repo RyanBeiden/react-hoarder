@@ -1,7 +1,18 @@
-.ItemCard__root {
-  max-width: 345px;
+@import '../../../styles/variables';
+
+.ItemCard__content {
+  color: #323232;
+  padding: 10px 15px 0px 5px !important;
 }
 
-.ItemCard__media {
-  height: 140px;
+.ItemCard__text {
+  font-family: $primaryFont !important;
+}
+
+.ItemCard__link:hover {
+  text-decoration: none !important;
+}
+
+.ItemCard__container {
+  outline: none !important;
 }
