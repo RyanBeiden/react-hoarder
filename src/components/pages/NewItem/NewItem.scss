@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+
+.NewItem__container {
+  border: 1px solid $textColor;
+  border-radius: .2em;
+
+  padding: 10px 35px 25px 35px;
+  margin-top: 25px;
+}
+
+.NewItem__title {
+  margin-top: 30px;
+}
+
+.NewItem__input {
+  width: 500px;
+}

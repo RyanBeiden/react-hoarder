@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 
+import itemShape from '../../../helpers/props/itemShape';
+
 import './ItemCard.scss';
 
 const styles = {
@@ -34,6 +36,10 @@ const styles = {
 };
 
 class ItemCard extends React.Component {
+  static propTypes = {
+    item: itemShape.itemShape,
+  }
+
   render() {
     const { item, classes } = this.props;
     const viewLink = `/stuff/${item.id}`;
