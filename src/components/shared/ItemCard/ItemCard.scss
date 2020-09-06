@@ -16,3 +16,20 @@
 .ItemCard__container {
   outline: none !important;
 }
+
+.ItemCard__link-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ItemCard__delete-icon {
+  color: #c92828 !important;
+  font-size: 2.5em !important;
+  padding: 4px;
+}
+
+.ItemCard__delete-icon:hover {
+  color: #a32121 !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}

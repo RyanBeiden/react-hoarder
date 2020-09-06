@@ -10,8 +10,8 @@ import {
   Box,
   Button,
 } from '@material-ui/core';
-
 import Skeleton from '@material-ui/lab/Skeleton';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 
 import itemsData from '../../../helpers/data/itemsData';
 
@@ -42,6 +42,17 @@ class SingleItem extends React.Component {
       .catch((err) => console.error('Could not get the item by its id -> ', err));
   }
 
+  deleteSingleItem = (e) => {
+    e.preventDefault();
+    const { itemId } = this.props.match.params;
+
+    itemsData.deleteItem(itemId)
+      .then(() => {
+        this.props.history.push('/stuff');
+      })
+      .catch((err) => console.error('Could not delete the single item -> ', err));
+  }
+
   render() {
     const { item } = this.state;
     const { classes } = this.props;
@@ -68,9 +79,12 @@ class SingleItem extends React.Component {
               <Typography className="SingleItem__description" component="p">
                 {item.itemDescription}
               </Typography>
-              <Link to={editLink} className="SingleItem__link">
-                <Button size="small" color="primary" className={classes.blueButton}>Edit</Button>
-              </Link>
+              <div className="SingleItem__link-container">
+                <Link to={editLink} className="SingleItem__link">
+                  <Button size="small" color="primary" className={classes.blueButton}>Edit</Button>
+                </Link>
+                <DeleteForeverRoundedIcon className="SingleItem__delete-icon" onClick={this.deleteSingleItem}/>
+              </div>
             </CardContent>
           </Card>
         </Box>

@@ -1,16 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { withStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+} from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { withStyles } from '@material-ui/core/styles';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 
 import itemShape from '../../../helpers/props/itemShape';
 
@@ -38,6 +42,13 @@ const styles = {
 class ItemCard extends React.Component {
   static propTypes = {
     item: itemShape.itemShape,
+    deleteItem: PropTypes.func.isRequired,
+  }
+
+  deleteItemEvent = (e) => {
+    e.preventDefault();
+    const { deleteItem, item } = this.props;
+    deleteItem(item.id);
   }
 
   render() {
@@ -63,10 +74,11 @@ class ItemCard extends React.Component {
                 </CardContent>
               </CardActionArea>
             </Link>
-            <CardActions>
+            <CardActions className="ItemCard__link-container">
               <Link to={editLink} className="ItemCard__link">
                 <Button size="small" color="primary" className={classes.blueButton}>Edit</Button>
               </Link>
+              <DeleteForeverRoundedIcon className="ItemCard__delete-icon" onClick={this.deleteItemEvent}/>
             </CardActions>
           </Card>
         ) : (
