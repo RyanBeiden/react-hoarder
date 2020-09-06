@@ -43,6 +43,7 @@ class ItemCard extends React.Component {
   render() {
     const { item, classes } = this.props;
     const viewLink = `/stuff/${item.id}`;
+    const editLink = `/edit/${item.id}`;
 
     return (
       <Box p={2}>
@@ -63,9 +64,9 @@ class ItemCard extends React.Component {
               </CardActionArea>
             </Link>
             <CardActions>
-              <Button size="small" color="primary" className={classes.blueButton}>
-                Edit
-              </Button>
+              <Link to={editLink} className="ItemCard__link">
+                <Button size="small" color="primary" className={classes.blueButton}>Edit</Button>
+              </Link>
             </CardActions>
           </Card>
         ) : (
