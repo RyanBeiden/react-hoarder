@@ -22,7 +22,10 @@ const getItemsByUid = (uid) => new Promise((resolve, reject) => {
 
 const getItemById = (itemId) => axios.get(`${baseUrl}/items/${itemId}.json`);
 
+const addNewItem = (newItem) => axios.post(`${baseUrl}/items.json`, newItem);
+
 export default {
   getItemsByUid,
   getItemById,
+  addNewItem,
 };
