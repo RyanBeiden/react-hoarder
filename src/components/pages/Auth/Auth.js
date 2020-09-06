@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircleTwoTone from '@material-ui/icons/AccountCircleTwoTone';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import CallMadeIcon from '@material-ui/icons/CallMade';
 
 import './Auth.scss';
 
@@ -60,7 +61,13 @@ class Auth extends React.Component {
               <MenuItem onClick={signOutUser} className="logout-button">Logout</MenuItem>
             </Menu>
           </div>
-          : ''}
+          : <div className="Auth__page-title">
+              <h1>YOU ARE A HOARDER...<br/>
+                So Sign In
+              <CallMadeIcon className="Auth__arrow-icon" />
+              </h1>
+            </div>
+        }
       </div>
     );
   }

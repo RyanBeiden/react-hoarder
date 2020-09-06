@@ -20,3 +20,21 @@
 .SingleItem__link:hover {
   text-decoration: none !important;
 }
+
+.SingleItem__link-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.SingleItem__delete-icon {
+  align-self: flex-end;
+  color: #c92828 !important;
+  font-size: 2.5em !important;
+  padding: 4px;
+}
+
+.SingleItem__delete-icon:hover {
+  color: #a32121 !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}

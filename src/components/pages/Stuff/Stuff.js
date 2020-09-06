@@ -23,12 +23,21 @@ class Stuff extends React.Component {
       .catch((err) => console.error('Getting items by UID did not work -> ', err));
   }
 
+  deleteItem = (itemToDelete) => {
+    itemsData.deleteItem(itemToDelete)
+      .then(() => {
+        this.getItems();
+      })
+      .catch((err) => console.error('Could not delete item -> ', err));
+  }
+
   render() {
     const { items } = this.state;
 
     const getItemCards = items.map((item) => <ItemCard
       key={item.id}
       item={item}
+      deleteItem={this.deleteItem}
     />);
 
     return (
