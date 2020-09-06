@@ -1,4 +1,4 @@
-# React Hoard
+# React Hoarder
 
 Here we have a CRUD web app built with React allowing a User (once signed in) to add new items to their collection. They can delete items they've gotten rid of and edit their details too.
 
