@@ -1,15 +1,33 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/core/styles';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  Button,
+} from '@material-ui/core';
+
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import itemsData from '../../../helpers/data/itemsData';
 
 import './SingleItem.scss';
+
+const styles = {
+  blueButton: {
+    background: 'linear-gradient(45deg, #0d70a5 30%, #4692bb 90%)',
+    border: 0,
+    borderRadius: 3,
+    color: 'white',
+    height: 38,
+    padding: '0 20px',
+    margin: '25px 0px 0px 0px',
+  },
+};
 
 class SingleItem extends React.Component {
   state = {
@@ -26,6 +44,9 @@ class SingleItem extends React.Component {
 
   render() {
     const { item } = this.state;
+    const { classes } = this.props;
+    const { itemId } = this.props.match.params;
+    const editLink = `/edit/${itemId}`;
 
     return (
       <>
@@ -47,6 +68,9 @@ class SingleItem extends React.Component {
               <Typography className="SingleItem__description" component="p">
                 {item.itemDescription}
               </Typography>
+              <Link to={editLink} className="SingleItem__link">
+                <Button size="small" color="primary" className={classes.blueButton}>Edit</Button>
+              </Link>
             </CardContent>
           </Card>
         </Box>
@@ -55,4 +79,4 @@ class SingleItem extends React.Component {
   }
 }
 
-export default SingleItem;
+export default withStyles(styles)(SingleItem);

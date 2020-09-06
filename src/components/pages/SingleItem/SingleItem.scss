@@ -12,3 +12,11 @@
   font-size: 1.2em;
   color: $textColor;
 }
+
+.SingleItem__link {
+  margin: 0;
+}
+
+.SingleItem__link:hover {
+  text-decoration: none !important;
+}
